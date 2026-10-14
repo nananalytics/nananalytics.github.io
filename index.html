@@ -12,26 +12,28 @@
 /* Layout: one left-aligned column (max 1080px). Hero = big name + study route line.
    Work = each project as a rule-separated row: title column | question/data/method/result. */
 :root {
-  --paper: #F2F4F3;
+  --paper: #F8FBFE;
   --surface: #FFFFFF;
-  --ink: #17222B;
-  --muted: #56636C;
-  --line: #D3DAD8;
-  --accent: #0E6E62;
-  --accent-soft: #DCECE8;
+  --hero: #E6F1FB;
+  --baby: #91C5EF;
+  --ink: #142033;
+  --muted: #4E6077;
+  --line: #DAE5F0;
+  --accent: #2A5A96;
+  --accent-soft: #EAF3FC;
   --display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
   --body: "Public Sans", "Helvetica Neue", Arial, system-ui, sans-serif;
   --gutter: clamp(16px, 4vw, 40px);
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #10171B; --surface: #161F24; --ink: #E4EBE9; --muted: #98A6AC;
-    --line: #27343B; --accent: #5CC3B1; --accent-soft: #173330; color-scheme: dark;
+    --paper: #0F1724; --surface: #152033; --hero: #132033; --baby: #7DB6E6; --ink: #E6EEF8; --muted: #9CB0C7;
+    --line: #25364D; --accent: #9CCBF2; --accent-soft: #1A2D47; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --paper: #10171B; --surface: #161F24; --ink: #E4EBE9; --muted: #98A6AC;
-  --line: #27343B; --accent: #5CC3B1; --accent-soft: #173330; color-scheme: dark;
+  --paper: #0F1724; --surface: #152033; --hero: #132033; --baby: #7DB6E6; --ink: #E6EEF8; --muted: #9CB0C7;
+  --line: #25364D; --accent: #9CCBF2; --accent-soft: #1A2D47; color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
@@ -66,7 +68,10 @@ h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
 .top nav a:hover { color: var(--ink); }
 
 /* Hero */
-.hero { padding-block: clamp(48px, 9vw, 104px) clamp(40px, 6vw, 72px); }
+.hero { padding-block: clamp(48px, 9vw, 104px) clamp(40px, 6vw, 72px); background: var(--hero); }
+.hero .btn.ghost { border-color: color-mix(in srgb, var(--ink) 25%, transparent); }
+.hero .stop::after { background: var(--hero); }
+.hero .stop::before { background: color-mix(in srgb, var(--ink) 18%, transparent); }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: clamp(24px, 5vw, 64px); align-items: end; }
 .hero h1 {
   font-size: clamp(3.4rem, 11vw, 8rem);
@@ -78,11 +83,9 @@ h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; }
 .status { margin: 18px 0 0; color: var(--muted); max-width: 60ch; }
 .status strong { color: var(--ink); font-weight: 600; }
 .portrait {
-  /* Replace with <img src="photo.jpg" alt="Portrait of Nan Li" class="portrait"> */
-  width: clamp(140px, 22vw, 240px); aspect-ratio: 4 / 5; max-width: 100%;
-  border-radius: 6px; background: var(--accent-soft); color: var(--accent);
-  display: grid; place-items: center; object-fit: cover;
-  font-family: var(--display); font-weight: 800; font-size: clamp(2.5rem, 6vw, 4.5rem);
+  display: block; width: clamp(160px, 24vw, 280px); aspect-ratio: 4 / 5; max-width: 100%; height: auto;
+  border-radius: 8px; background: var(--baby); object-fit: cover; object-position: 50% 20%;
+  box-shadow: 0 0 0 6px var(--paper);
 }
 .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 .btn {
@@ -169,7 +172,7 @@ footer .wrap { padding-block: 20px; font-size: 0.85rem; color: var(--muted); dis
 
 @media (max-width: 760px) {
   .hero-grid { grid-template-columns: minmax(0, 1fr); }
-  .portrait { order: -1; width: 120px; font-size: 2.4rem; }
+  .portrait { order: -1; width: 140px; }
   .figures ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .project, .job, .two { grid-template-columns: minmax(0, 1fr); }
   .job { gap: 6px; }
@@ -209,7 +212,7 @@ footer .wrap { padding-block: 20px; font-size: 0.85rem; color: var(--muted); dis
             <a class="btn ghost" href="https://github.com/nananalytics" target="_blank" rel="noopener">GitHub</a>
           </div>
         </div>
-        <div class="portrait" role="img" aria-label="Photo placeholder">NL</div>
+        <img class="portrait" src="photo.jpg" alt="Portrait of Nan Li" width="280" height="350">
       </div>
 
       <div class="route">
